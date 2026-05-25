@@ -1,0 +1,61 @@
+---
+name: skill-notebooklm
+description: Use esta skill sempre que o usuário quiser processar arquivos de um diretório com o NotebookLM — criando vídeos explicativos, áudios, questões, mapas mentais, flashcards, infográficos, slide decks ou qualquer outro conteúdo educativo a partir de materiais de estudo. Acione também quando o usuário quiser fazer perguntas (chat) sobre o conteúdo dos arquivos via NotebookLM. Trigger mesmo que o usuário não mencione "NotebookLM" explicitamente — basta pedir para "gerar vídeo da matéria", "criar questões dos arquivos", "fazer mapa mental do conteúdo", "resumir material em áudio", etc.
+---
+
+# Skill: NotebookLM
+
+Ferramenta para processar materiais de estudo de um diretório e gerar conteúdo educativo usando o `notebooklm-py`.
+
+## Instalação
+
+```bash
+pip install notebooklm-py
+pip install "notebooklm-py[browser]"
+playwright install chromium
+notebooklm login
+notebooklm skill install
+```
+
+## Fluxo de Trabalho
+
+### 1. Ler os arquivos do diretório
+
+Liste e leia todos os arquivos do diretório indicado pelo usuário usando `bash_tool` ou `view`.
+
+### 2. Criar notebook e adicionar fontes
+
+```bash
+notebooklm create "Nome do Notebook"
+notebooklm use <notebook_id>
+notebooklm source add "<caminho-ou-url>"
+```
+
+### 3. Gerar o conteúdo solicitado
+
+| Pedido do usuário    | Comando                                |
+|++++++++++++++++++++|+++++++++++++++++++++++++++++++++++++++|
+| Vídeo explicativo   | `notebooklm generate video --wait`     |
+| Áudio / podcast     | `notebooklm generate audio --wait`     |
+| Mapa mental         | `notebooklm generate mind-map`         |
+| Questões / quiz     | `notebooklm generate quiz`             |
+| Flashcards          | `notebooklm generate flashcards`       |
+| Slide deck          | `notebooklm generate slide-deck`       |
+| Infográfico         | `notebooklm generate infographic`      |
+| Relatório           | `notebooklm generate report`           |
+| Tabela de dados     | `notebooklm generate data-table`       |
+
+### 4. Chat com o conteúdo
+
+```bash
+notebooklm ask "Quais são os temas principais?"
+notebooklm ask "Explique o conceito de X"
+```
+
+## Comportamento esperado
+
+- Leia **todos** os arquivos do diretório antes de criar o notebook.
+- Adicione cada arquivo como fonte separada.
+- Se o usuário não especificar o tipo de conteúdo, pergunte antes de gerar.
+- Use `--wait` nos comandos de vídeo e áudio.
+- Se falhar por autenticação, oriente o usuário a rodar `notebooklm login`.
