@@ -8,3 +8,5 @@ Essas são minhas skills — use com moderação.
 **3. design**  —  Deixa teu site bonito
 
 **4. Notbooklm**  —  Usa ele pelo terminal e pode integrar com outros programas proprios
+
+**5. nvidia-linux-doctor** — Conserta driver NVIDIA e jogos no Linux (Steam/Proton), com dry-run e rollback.
